@@ -1,0 +1,10 @@
+
+
+Date:2019-05-05 15:47:39,734
+Thread:[1]
+Level:ERROR
+Logger:Microsoft.SyncfusionAssemblyReference.SyncfusionAssemblyReferencePackage                         [(null)]
+Message:System.InvalidOperationException: Cannot set Visibility or call Show, ShowDialog, or WindowInteropHelper.EnsureHandle after a Window has closed.
+   at System.Windows.Window.VerifyCanShow()
+   at System.Windows.Window.ShowDialog()
+   at Microsoft.SyncfusionAssemblyReference.SyncfusionAssemblyReferencePackage.MenuItemCallback(Object sender, EventArgs e) in D:\Work\SVN\17.1.0.1\Utilities\VSExtension\SyncfusionAssemblyReference\SyncfusionAssemblyReference\SyncfusionAssemblyReference.cs:line 317
