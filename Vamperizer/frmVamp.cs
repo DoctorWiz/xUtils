@@ -28,7 +28,7 @@ using TagLib.MusePack;
 using TagLib.NonContainer;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
-
+//using LORUtils;
 
 namespace Vamperizer
 {
@@ -1883,7 +1883,8 @@ namespace Vamperizer
 			mruTimings.SaveToConfig(Properties.Settings.Default);
 			// Get path and name for export files
 			
-			if (chkBars.Checked)
+			//if (chkBars.Checked)
+			if (doBarsBeats)
 			{
 				if (xBars != null)
 				{
@@ -2021,7 +2022,7 @@ namespace Vamperizer
 		// Create a temporary streamwriter file
 		timingsTemp = tempDir + Path.GetRandomFileName();
 		writer = new StreamWriter(timingsTemp);
-		string lineOut = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+			string lineOut = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
 		writer.WriteLine(lineOut);
 
 		// Write this xTiming to an export file
@@ -2330,6 +2331,28 @@ namespace Vamperizer
 
 			System.Threading.Thread.Sleep(50);
 
+		}
+
+		private void optSeqNew_CheckedChanged(object sender, EventArgs e)
+		{
+			btnSaveSeq.Text = "Save &As...";
+		}
+
+		private void optSeqAppend_CheckedChanged(object sender, EventArgs e)
+		{
+			btnSaveSeq.Text = "S&ave Into...";
+		}
+
+		private void btnSaveSeq_Click(object sender, EventArgs e)
+		{
+			if (optSeqNew.Checked)
+			{
+				SaveAsNewSequence();
+			}
+			if (optSeqAppend.Checked)
+			{
+				SaveInExistingSequence();
+			}
 		}
 
 		/*

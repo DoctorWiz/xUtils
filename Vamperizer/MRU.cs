@@ -166,8 +166,17 @@ namespace Vamperizer
 							files[q] = "";
 						}
 
-						//!EXCEPTION HERE
-						settings[pName] = files[q];
+						try
+						{
+							//!EXCEPTION HERE
+							settings[pName] = files[q];
+						}
+						catch {
+						if (IsWizard)
+							{
+								System.Diagnostics.Debugger.Break();
+							}
+						}
 					}
 					catch (Exception e)
 					{

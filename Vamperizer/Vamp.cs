@@ -39,6 +39,14 @@ namespace Vamperizer
 		//! for normal operation, set to true
 
 
+		private int errLevel = 0;
+		private bool doBarsBeats = false;
+		private bool doNoteOnsets = false;
+		private bool doTranscribe = false;
+		private bool  doSpectrum = false;
+		private bool doPitchKey = false;
+		private bool doSegments = false;
+		private bool keepGoing = true;
 		private string resultsBarBeats = "";
 		private string resultsqmBeats = "";
 		private string resultsBeatRoot = "";
@@ -144,7 +152,6 @@ namespace Vamperizer
 		{
 			//ImBusy(true);
 
-			int errLevel = 0;
 			this.Cursor = Cursors.WaitCursor;
 			grpAnalyze.Enabled = false;
 			grpAudio.Enabled = false;
@@ -157,13 +164,16 @@ namespace Vamperizer
 			//pnlVamping.Visible = true;
 
 			bool needsFix = false;
-			bool doBarsBeats = false;
-			bool doNoteOnsets = false;
-			bool doTranscribe = false;
-			bool doSpectrum = false;
-			bool doPitchKey = false;
-			bool doSegments = false;
-			bool keepGoing = true;
+			
+			//Reset these from the last run
+			errLevel = 0;
+			doBarsBeats = false;
+			doNoteOnsets = false;
+			doTranscribe = false;
+			doSpectrum = false;
+			doPitchKey = false;
+			doSegments = false;
+			keepGoing = true;
 			//string resultsFile = "";
 
 
@@ -481,14 +491,18 @@ namespace Vamperizer
 			{
 				btnSave.Enabled = true;
 				fileAudioLast = audioFileName;
-				ShowVamping("");
-				//ImBusy(false);
-				this.Cursor = Cursors.Default;
 				grpAnalyze.Enabled = true;
 				grpAudio.Enabled = true;
 				//grpOptions.Enabled = true;
 				grpTimings.Enabled = true;
 				grpSavex.Enabled = true;
+
+				btnSaveSeq.Enabled = true;
+				grpSaveLOR.Enabled = true;
+
+				//ImBusy(false);
+				ShowVamping("");
+				this.Cursor = Cursors.Default;
 			}
 
 			return errLevel;
@@ -1363,13 +1377,15 @@ namespace Vamperizer
 							int x = cmdProc.ExitCode;
 						}
 
-					//	if (System.IO.File.Exists(resultsFile))
-					//	{
+						if (System.IO.File.Exists(resultsFile))
+						{
 					//		return resultsFile;
 					//		errCount = 99999;
-					//	}
-					//	else
-					//	{
+						}
+						else
+						{
+						// NO RESULTS FILE!	
+						System.Diagnostics.Debugger.Break();
 					//		int ss = StepSizeError(outputFile);
 					//		if (ss==0)
 					//		{
@@ -1388,7 +1404,7 @@ namespace Vamperizer
 					//				errCount++;
 					//			}
 					//		}
-					//	}
+						}
 					}
 				//}
 			}
@@ -1399,9 +1415,10 @@ namespace Vamperizer
 				{
 
 				}
+				resultsFile = "";
 			}
 
-			return "";
+			return resultsFile;
 		}
 
 		/*private void OutputHandler(object sendingProcess, DataReceivedEventArgs outLine)

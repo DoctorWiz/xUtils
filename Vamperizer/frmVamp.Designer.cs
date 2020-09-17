@@ -198,16 +198,17 @@
 			this.lblStep2A = new System.Windows.Forms.Label();
 			this.chkReuse = new System.Windows.Forms.CheckBox();
 			this.tmrAni = new System.Windows.Forms.Timer(this.components);
-			this.grpSaveLor = new System.Windows.Forms.GroupBox();
+			this.grpSaveLOR = new System.Windows.Forms.GroupBox();
+			this.picLOR = new System.Windows.Forms.PictureBox();
 			this.panel3 = new System.Windows.Forms.Panel();
-			this.radioButton1 = new System.Windows.Forms.RadioButton();
-			this.radioButton2 = new System.Windows.Forms.RadioButton();
+			this.optSeqAppend = new System.Windows.Forms.RadioButton();
+			this.optSeqNew = new System.Windows.Forms.RadioButton();
 			this.button1 = new System.Windows.Forms.Button();
 			this.label29 = new System.Windows.Forms.Label();
 			this.label30 = new System.Windows.Forms.Label();
-			this.button2 = new System.Windows.Forms.Button();
-			this.textBox1 = new System.Windows.Forms.TextBox();
-			this.picLOR = new System.Windows.Forms.PictureBox();
+			this.btnSaveSeq = new System.Windows.Forms.Button();
+			this.txtSeqName = new System.Windows.Forms.TextBox();
+			this.chkAutolaunch = new System.Windows.Forms.CheckBox();
 			this.staStatus.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.grpTimings.SuspendLayout();
@@ -233,9 +234,9 @@
 			this.grpOptions.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.picVampire)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-			this.grpSaveLor.SuspendLayout();
-			this.panel3.SuspendLayout();
+			this.grpSaveLOR.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.picLOR)).BeginInit();
+			this.panel3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// staStatus
@@ -1990,13 +1991,13 @@
 			this.grpSavex.Size = new System.Drawing.Size(334, 111);
 			this.grpSavex.TabIndex = 123;
 			this.grpSavex.TabStop = false;
-			this.grpSavex.Text = "      Save Timings";
+			this.grpSavex.Text = "          Save                              Timings";
 			// 
 			// picxLights
 			// 
 			this.picxLights.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picxLights.BackgroundImage")));
 			this.picxLights.InitialImage = ((System.Drawing.Image)(resources.GetObject("picxLights.InitialImage")));
-			this.picxLights.Location = new System.Drawing.Point(100, 0);
+			this.picxLights.Location = new System.Drawing.Point(66, -3);
 			this.picxLights.Name = "picxLights";
 			this.picxLights.Size = new System.Drawing.Size(85, 28);
 			this.picxLights.TabIndex = 137;
@@ -2055,9 +2056,9 @@
 			this.lblStep4.ForeColor = System.Drawing.SystemColors.Highlight;
 			this.lblStep4.Location = new System.Drawing.Point(6, -5);
 			this.lblStep4.Name = "lblStep4";
-			this.lblStep4.Size = new System.Drawing.Size(21, 24);
+			this.lblStep4.Size = new System.Drawing.Size(32, 24);
 			this.lblStep4.TabIndex = 127;
-			this.lblStep4.Text = "4";
+			this.lblStep4.Text = "4a";
 			// 
 			// label4
 			// 
@@ -2282,56 +2283,67 @@
 			// 
 			this.tmrAni.Tick += new System.EventHandler(this.tmrAni_Tick);
 			// 
-			// grpSaveLor
+			// grpSaveLOR
 			// 
-			this.grpSaveLor.Controls.Add(this.picLOR);
-			this.grpSaveLor.Controls.Add(this.panel3);
-			this.grpSaveLor.Controls.Add(this.button1);
-			this.grpSaveLor.Controls.Add(this.label29);
-			this.grpSaveLor.Controls.Add(this.label30);
-			this.grpSaveLor.Controls.Add(this.button2);
-			this.grpSaveLor.Controls.Add(this.textBox1);
-			this.grpSaveLor.Enabled = false;
-			this.grpSaveLor.Location = new System.Drawing.Point(12, 577);
-			this.grpSaveLor.Name = "grpSaveLor";
-			this.grpSaveLor.Size = new System.Drawing.Size(334, 111);
-			this.grpSaveLor.TabIndex = 136;
-			this.grpSaveLor.TabStop = false;
-			this.grpSaveLor.Text = "      Save Sequence";
+			this.grpSaveLOR.Controls.Add(this.chkAutolaunch);
+			this.grpSaveLOR.Controls.Add(this.picLOR);
+			this.grpSaveLOR.Controls.Add(this.panel3);
+			this.grpSaveLOR.Controls.Add(this.button1);
+			this.grpSaveLOR.Controls.Add(this.label29);
+			this.grpSaveLOR.Controls.Add(this.label30);
+			this.grpSaveLOR.Controls.Add(this.btnSaveSeq);
+			this.grpSaveLOR.Controls.Add(this.txtSeqName);
+			this.grpSaveLOR.Enabled = false;
+			this.grpSaveLOR.Location = new System.Drawing.Point(12, 577);
+			this.grpSaveLOR.Name = "grpSaveLOR";
+			this.grpSaveLOR.Size = new System.Drawing.Size(334, 111);
+			this.grpSaveLOR.TabIndex = 136;
+			this.grpSaveLOR.TabStop = false;
+			this.grpSaveLOR.Text = "          Save                                Sequence";
+			// 
+			// picLOR
+			// 
+			this.picLOR.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picLOR.BackgroundImage")));
+			this.picLOR.Location = new System.Drawing.Point(66, 0);
+			this.picLOR.Name = "picLOR";
+			this.picLOR.Size = new System.Drawing.Size(90, 19);
+			this.picLOR.TabIndex = 137;
+			this.picLOR.TabStop = false;
 			// 
 			// panel3
 			// 
-			this.panel3.Controls.Add(this.radioButton1);
-			this.panel3.Controls.Add(this.radioButton2);
+			this.panel3.Controls.Add(this.optSeqAppend);
+			this.panel3.Controls.Add(this.optSeqNew);
 			this.panel3.Location = new System.Drawing.Point(19, 19);
 			this.panel3.Name = "panel3";
 			this.panel3.Size = new System.Drawing.Size(277, 26);
 			this.panel3.TabIndex = 136;
 			// 
-			// radioButton1
+			// optSeqAppend
 			// 
-			this.radioButton1.AutoSize = true;
-			this.radioButton1.Checked = true;
-			this.radioButton1.Location = new System.Drawing.Point(128, 5);
-			this.radioButton1.Name = "radioButton1";
-			this.radioButton1.Size = new System.Drawing.Size(116, 18);
-			this.radioButton1.TabIndex = 139;
-			this.radioButton1.TabStop = true;
-			this.radioButton1.Text = "Append to Existing";
-			this.radioButton1.UseCompatibleTextRendering = true;
-			this.radioButton1.UseVisualStyleBackColor = true;
+			this.optSeqAppend.AutoSize = true;
+			this.optSeqAppend.Location = new System.Drawing.Point(128, 5);
+			this.optSeqAppend.Name = "optSeqAppend";
+			this.optSeqAppend.Size = new System.Drawing.Size(116, 18);
+			this.optSeqAppend.TabIndex = 139;
+			this.optSeqAppend.Text = "Append to Existing";
+			this.optSeqAppend.UseCompatibleTextRendering = true;
+			this.optSeqAppend.UseVisualStyleBackColor = true;
+			this.optSeqAppend.CheckedChanged += new System.EventHandler(this.optSeqAppend_CheckedChanged);
 			// 
-			// radioButton2
+			// optSeqNew
 			// 
-			this.radioButton2.AutoSize = true;
-			this.radioButton2.Enabled = false;
-			this.radioButton2.Location = new System.Drawing.Point(3, 5);
-			this.radioButton2.Name = "radioButton2";
-			this.radioButton2.Size = new System.Drawing.Size(82, 18);
-			this.radioButton2.TabIndex = 138;
-			this.radioButton2.Text = "Create New";
-			this.radioButton2.UseCompatibleTextRendering = true;
-			this.radioButton2.UseVisualStyleBackColor = true;
+			this.optSeqNew.AutoSize = true;
+			this.optSeqNew.Checked = true;
+			this.optSeqNew.Location = new System.Drawing.Point(3, 5);
+			this.optSeqNew.Name = "optSeqNew";
+			this.optSeqNew.Size = new System.Drawing.Size(82, 18);
+			this.optSeqNew.TabIndex = 138;
+			this.optSeqNew.TabStop = true;
+			this.optSeqNew.Text = "Create New";
+			this.optSeqNew.UseCompatibleTextRendering = true;
+			this.optSeqNew.UseVisualStyleBackColor = true;
+			this.optSeqNew.CheckedChanged += new System.EventHandler(this.optSeqNew_CheckedChanged);
 			// 
 			// button1
 			// 
@@ -2351,9 +2363,9 @@
 			this.label29.ForeColor = System.Drawing.SystemColors.Highlight;
 			this.label29.Location = new System.Drawing.Point(6, -5);
 			this.label29.Name = "label29";
-			this.label29.Size = new System.Drawing.Size(21, 24);
+			this.label29.Size = new System.Drawing.Size(32, 24);
 			this.label29.TabIndex = 127;
-			this.label29.Text = "5";
+			this.label29.Text = "4b";
 			// 
 			// label30
 			// 
@@ -2365,34 +2377,38 @@
 			this.label30.TabIndex = 126;
 			this.label30.Text = "Sequence Filename(s):";
 			// 
-			// button2
+			// btnSaveSeq
 			// 
-			this.button2.AllowDrop = true;
-			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(244, 64);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(75, 23);
-			this.button2.TabIndex = 125;
-			this.button2.Text = "Save As...";
-			this.button2.UseVisualStyleBackColor = true;
+			this.btnSaveSeq.AllowDrop = true;
+			this.btnSaveSeq.Enabled = false;
+			this.btnSaveSeq.Location = new System.Drawing.Point(244, 64);
+			this.btnSaveSeq.Name = "btnSaveSeq";
+			this.btnSaveSeq.Size = new System.Drawing.Size(75, 23);
+			this.btnSaveSeq.TabIndex = 125;
+			this.btnSaveSeq.Text = "Save As...";
+			this.btnSaveSeq.UseVisualStyleBackColor = true;
+			this.btnSaveSeq.Click += new System.EventHandler(this.btnSaveSeq_Click);
 			// 
-			// textBox1
+			// txtSeqName
 			// 
-			this.textBox1.AllowDrop = true;
-			this.textBox1.Location = new System.Drawing.Point(19, 67);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.ReadOnly = true;
-			this.textBox1.Size = new System.Drawing.Size(219, 20);
-			this.textBox1.TabIndex = 124;
+			this.txtSeqName.AllowDrop = true;
+			this.txtSeqName.Location = new System.Drawing.Point(19, 67);
+			this.txtSeqName.Name = "txtSeqName";
+			this.txtSeqName.ReadOnly = true;
+			this.txtSeqName.Size = new System.Drawing.Size(219, 20);
+			this.txtSeqName.TabIndex = 124;
 			// 
-			// picLOR
+			// chkAutolaunch
 			// 
-			this.picLOR.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picLOR.BackgroundImage")));
-			this.picLOR.Location = new System.Drawing.Point(108, 0);
-			this.picLOR.Name = "picLOR";
-			this.picLOR.Size = new System.Drawing.Size(90, 19);
-			this.picLOR.TabIndex = 137;
-			this.picLOR.TabStop = false;
+			this.chkAutolaunch.AutoSize = true;
+			this.chkAutolaunch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.chkAutolaunch.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.chkAutolaunch.Location = new System.Drawing.Point(22, 88);
+			this.chkAutolaunch.Name = "chkAutolaunch";
+			this.chkAutolaunch.Size = new System.Drawing.Size(165, 17);
+			this.chkAutolaunch.TabIndex = 138;
+			this.chkAutolaunch.Text = "Auto-launch Sequence Editor";
+			this.chkAutolaunch.UseVisualStyleBackColor = true;
 			// 
 			// frmTune
 			// 
@@ -2400,7 +2416,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1369, 724);
-			this.Controls.Add(this.grpSaveLor);
+			this.Controls.Add(this.grpSaveLOR);
 			this.Controls.Add(this.chkReuse);
 			this.Controls.Add(this.grpAnalyze);
 			this.Controls.Add(this.grpSavex);
@@ -2468,11 +2484,11 @@
 			this.grpOptions.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.picVampire)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-			this.grpSaveLor.ResumeLayout(false);
-			this.grpSaveLor.PerformLayout();
+			this.grpSaveLOR.ResumeLayout(false);
+			this.grpSaveLOR.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.picLOR)).EndInit();
 			this.panel3.ResumeLayout(false);
 			this.panel3.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.picLOR)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -2630,15 +2646,15 @@
 		private System.Windows.Forms.ComboBox cboMethodSegments;
 		private System.Windows.Forms.Label label28;
 		private System.Windows.Forms.ComboBox cboLabelsSegments;
-		private System.Windows.Forms.GroupBox grpSaveLor;
+		private System.Windows.Forms.GroupBox grpSaveLOR;
 		private System.Windows.Forms.Panel panel3;
-		private System.Windows.Forms.RadioButton radioButton1;
-		private System.Windows.Forms.RadioButton radioButton2;
+		private System.Windows.Forms.RadioButton optSeqAppend;
+		private System.Windows.Forms.RadioButton optSeqNew;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Label label29;
 		private System.Windows.Forms.Label label30;
-		private System.Windows.Forms.Button button2;
-		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.Button btnSaveSeq;
+		private System.Windows.Forms.TextBox txtSeqName;
 		private System.Windows.Forms.PictureBox picxLights;
 		private System.Windows.Forms.CheckBox chk24fps;
 		private System.Windows.Forms.CheckBox chk30fps;
@@ -2657,6 +2673,7 @@
 		private System.Windows.Forms.CheckBox checkBox3;
 		private System.Windows.Forms.CheckBox checkBox4;
 		private System.Windows.Forms.PictureBox picLOR;
+		private System.Windows.Forms.CheckBox chkAutolaunch;
 	}
 }
 

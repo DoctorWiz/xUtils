@@ -12,7 +12,7 @@ namespace Vamperizer.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.8.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.7.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -896,6 +896,126 @@ namespace Vamperizer.Properties {
             }
             set {
                 this["labelSegments"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MRUsequence0 {
+            get {
+                return ((string)(this["MRUsequence0"]));
+            }
+            set {
+                this["MRUsequence0"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MRUsequence1 {
+            get {
+                return ((string)(this["MRUsequence1"]));
+            }
+            set {
+                this["MRUsequence1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MRUsequence2 {
+            get {
+                return ((string)(this["MRUsequence2"]));
+            }
+            set {
+                this["MRUsequence2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MRUsequence3 {
+            get {
+                return ((string)(this["MRUsequence3"]));
+            }
+            set {
+                this["MRUsequence3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MRUsequence4 {
+            get {
+                return ((string)(this["MRUsequence4"]));
+            }
+            set {
+                this["MRUsequence4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MRUsequence5 {
+            get {
+                return ((string)(this["MRUsequence5"]));
+            }
+            set {
+                this["MRUsequence5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MRUsequence6 {
+            get {
+                return ((string)(this["MRUsequence6"]));
+            }
+            set {
+                this["MRUsequence6"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MRUsequence7 {
+            get {
+                return ((string)(this["MRUsequence7"]));
+            }
+            set {
+                this["MRUsequence7"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MRUsequence8 {
+            get {
+                return ((string)(this["MRUsequence8"]));
+            }
+            set {
+                this["MRUsequence8"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MRUsequence9 {
+            get {
+                return ((string)(this["MRUsequence9"]));
+            }
+            set {
+                this["MRUsequence9"] = value;
             }
         }
     }
