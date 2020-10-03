@@ -47,6 +47,8 @@ namespace Vamperizer
 		private bool doPitchKey = false;
 		private bool doSegments = false;
 		private bool keepGoing = true;
+		public int beatsPerBar = 4;
+		public int firstBeat = 1;
 		private string resultsBarBeats = "";
 		private string resultsqmBeats = "";
 		private string resultsBeatRoot = "";
@@ -519,7 +521,7 @@ namespace Vamperizer
 				resultsBarBeats = GenerateBarBeatsData();
 				if (resultsBarBeats.Length > 4)
 				{
-					ReadBeatData(resultsBarBeats);
+					ReadBeatData(resultsBarBeats, beatsPerBar, firstBeat);
 				errLevel = 0;
 					failedAttempts = 9999; // Force exit of while loop and also indicate success
 				}
@@ -765,8 +767,19 @@ namespace Vamperizer
 						{
 							if (swTrackBeat.Checked)
 							{
+								beatsPerBar = 3;
 								lineIn = lineIn.Replace('4', '3');
 							}
+							else
+							{
+								// Reset back to default in case it was changed
+								beatsPerBar = 4;
+							}
+							// Get First Beat from textbox
+							int fb = 1; // default
+							int.TryParse(txtStartBeat.Text, out fb); // try to parse textbox text
+							if ((fb < 1) || (fb > beatsPerBar)) fb = 1; // check value, if out of range set to default
+							firstBeat = fb; // remember it for later
 						}
 						writer.WriteLine(lineIn);
 					}
@@ -1682,7 +1695,7 @@ namespace Vamperizer
 		}
 
 		#region Timings
-		private int ReadBeatData(string resultsFile, int beatsPerBar = 4, int firstBeat = 1)
+		private int ReadBeatData(string resultsFile, int bpb = 4, int fb = 1)
 		{
 			int err = 0;
 			if ((xBars == null) || (!chkReuse.Checked))
@@ -1701,14 +1714,14 @@ namespace Vamperizer
 
 				int countLines = 0;
 				int countBars = 1;
-				int countBeats = firstBeat;
+				int countBeats = fb;
 				int countHalves = 1;
 				int countThirds = 1;
 				int countQuarters = 1;
-				int maxBeats = beatsPerBar;
-				int maxHalves = beatsPerBar * 2;
-				int maxThirds = beatsPerBar * 3;
-				int maxQuarters = beatsPerBar * 4;
+				int maxBeats = bpb;
+				int maxHalves = bpb * 2;
+				int maxThirds = bpb * 3;
+				int maxQuarters = bpb * 4;
 
 				int align = GetAlignment(cboAlignBarsBeats.Text);
 
@@ -1723,7 +1736,7 @@ namespace Vamperizer
 				}
 				reader.Close();
 
-				xBars = new xTimings("Bars" + " (Whole notes, (" + beatsPerBar.ToString() + " Quarter notes))");
+				xBars = new xTimings("Bars" + " (Whole notes, (" + bpb.ToString() + " Quarter notes))");
 				xBeatsFull = new xTimings("Beats-Full (Quarter notes)");
 				xBeatsHalf = new xTimings("Beats-Half (Eighth notes)");
 				xBeatsThird = new xTimings("Beats-Third (Twelth notes)");

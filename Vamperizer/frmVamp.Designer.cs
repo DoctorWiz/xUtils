@@ -199,6 +199,7 @@
 			this.chkReuse = new System.Windows.Forms.CheckBox();
 			this.tmrAni = new System.Windows.Forms.Timer(this.components);
 			this.grpSaveLOR = new System.Windows.Forms.GroupBox();
+			this.chkAutolaunch = new System.Windows.Forms.CheckBox();
 			this.picLOR = new System.Windows.Forms.PictureBox();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.optSeqAppend = new System.Windows.Forms.RadioButton();
@@ -208,7 +209,16 @@
 			this.label30 = new System.Windows.Forms.Label();
 			this.btnSaveSeq = new System.Windows.Forms.Button();
 			this.txtSeqName = new System.Windows.Forms.TextBox();
-			this.chkAutolaunch = new System.Windows.Forms.CheckBox();
+			this.grpPlatform = new System.Windows.Forms.GroupBox();
+			this.label35 = new System.Windows.Forms.Label();
+			this.pictureBox2 = new System.Windows.Forms.PictureBox();
+			this.chkLOR = new System.Windows.Forms.CheckBox();
+			this.chkxLights = new System.Windows.Forms.CheckBox();
+			this.pictureBox3 = new System.Windows.Forms.PictureBox();
+			this.pnlBeatFade = new System.Windows.Forms.Panel();
+			this.swRamps = new JCS.ToggleSwitch();
+			this.label36 = new System.Windows.Forms.Label();
+			this.label37 = new System.Windows.Forms.Label();
 			this.staStatus.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.grpTimings.SuspendLayout();
@@ -237,6 +247,10 @@
 			this.grpSaveLOR.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.picLOR)).BeginInit();
 			this.panel3.SuspendLayout();
+			this.grpPlatform.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+			this.pnlBeatFade.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// staStatus
@@ -415,6 +429,7 @@
 			// 
 			// grpTimings
 			// 
+			this.grpTimings.Controls.Add(this.grpPlatform);
 			this.grpTimings.Controls.Add(this.chk24fps);
 			this.grpTimings.Controls.Add(this.btnResetDefaults);
 			this.grpTimings.Controls.Add(this.chk30fps);
@@ -442,7 +457,7 @@
 			this.grpTimings.Enabled = false;
 			this.grpTimings.Location = new System.Drawing.Point(352, 12);
 			this.grpTimings.Name = "grpTimings";
-			this.grpTimings.Size = new System.Drawing.Size(775, 551);
+			this.grpTimings.Size = new System.Drawing.Size(775, 676);
 			this.grpTimings.TabIndex = 113;
 			this.grpTimings.TabStop = false;
 			this.grpTimings.Text = "      Select Which Timings to Generate";
@@ -452,7 +467,7 @@
 			this.chk24fps.AutoSize = true;
 			this.chk24fps.Enabled = false;
 			this.chk24fps.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.chk24fps.Location = new System.Drawing.Point(469, 224);
+			this.chk24fps.Location = new System.Drawing.Point(466, 364);
 			this.chk24fps.Name = "chk24fps";
 			this.chk24fps.Size = new System.Drawing.Size(153, 17);
 			this.chk24fps.TabIndex = 170;
@@ -463,7 +478,7 @@
 			// btnResetDefaults
 			// 
 			this.btnResetDefaults.AllowDrop = true;
-			this.btnResetDefaults.Location = new System.Drawing.Point(322, 200);
+			this.btnResetDefaults.Location = new System.Drawing.Point(319, 340);
 			this.btnResetDefaults.Name = "btnResetDefaults";
 			this.btnResetDefaults.Size = new System.Drawing.Size(123, 23);
 			this.btnResetDefaults.TabIndex = 158;
@@ -476,7 +491,7 @@
 			this.chk30fps.AutoSize = true;
 			this.chk30fps.Enabled = false;
 			this.chk30fps.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.chk30fps.Location = new System.Drawing.Point(469, 208);
+			this.chk30fps.Location = new System.Drawing.Point(466, 348);
 			this.chk30fps.Name = "chk30fps";
 			this.chk30fps.Size = new System.Drawing.Size(153, 17);
 			this.chk30fps.TabIndex = 169;
@@ -489,7 +504,7 @@
 			this.labelTweaks.AutoSize = true;
 			this.labelTweaks.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.labelTweaks.ForeColor = System.Drawing.SystemColors.HotTrack;
-			this.labelTweaks.Location = new System.Drawing.Point(352, 237);
+			this.labelTweaks.Location = new System.Drawing.Point(349, 377);
 			this.labelTweaks.Name = "labelTweaks";
 			this.labelTweaks.Size = new System.Drawing.Size(79, 13);
 			this.labelTweaks.TabIndex = 157;
@@ -501,7 +516,7 @@
 			this.chk15fps.AutoSize = true;
 			this.chk15fps.Enabled = false;
 			this.chk15fps.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.chk15fps.Location = new System.Drawing.Point(469, 240);
+			this.chk15fps.Location = new System.Drawing.Point(466, 380);
 			this.chk15fps.Name = "chk15fps";
 			this.chk15fps.Size = new System.Drawing.Size(153, 17);
 			this.chk15fps.TabIndex = 168;
@@ -586,7 +601,7 @@
 			this.grpSegments.Controls.Add(this.label21);
 			this.grpSegments.Controls.Add(this.cboAlignSegments);
 			this.grpSegments.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.grpSegments.Location = new System.Drawing.Point(317, 377);
+			this.grpSegments.Location = new System.Drawing.Point(314, 517);
 			this.grpSegments.Name = "grpSegments";
 			this.grpSegments.Size = new System.Drawing.Size(147, 150);
 			this.grpSegments.TabIndex = 142;
@@ -818,7 +833,7 @@
 			this.groupBox1.Controls.Add(this.label34);
 			this.groupBox1.Controls.Add(this.comboBox3);
 			this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.groupBox1.Location = new System.Drawing.Point(316, 22);
+			this.groupBox1.Location = new System.Drawing.Point(313, 162);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(147, 346);
 			this.groupBox1.TabIndex = 166;
@@ -965,7 +980,7 @@
 			this.grpPitchKey.Controls.Add(this.label15);
 			this.grpPitchKey.Controls.Add(this.cboAlignPitch);
 			this.grpPitchKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.grpPitchKey.Location = new System.Drawing.Point(164, 377);
+			this.grpPitchKey.Location = new System.Drawing.Point(161, 517);
 			this.grpPitchKey.Name = "grpPitchKey";
 			this.grpPitchKey.Size = new System.Drawing.Size(147, 150);
 			this.grpPitchKey.TabIndex = 140;
@@ -1197,7 +1212,7 @@
 			this.grpTranscription.Controls.Add(this.label6);
 			this.grpTranscription.Controls.Add(this.cboAlignTranscribe);
 			this.grpTranscription.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.grpTranscription.Location = new System.Drawing.Point(10, 377);
+			this.grpTranscription.Location = new System.Drawing.Point(7, 517);
 			this.grpTranscription.Name = "grpTranscription";
 			this.grpTranscription.Size = new System.Drawing.Size(147, 150);
 			this.grpTranscription.TabIndex = 138;
@@ -1325,7 +1340,7 @@
 			this.grpOnsets.Controls.Add(this.label3);
 			this.grpOnsets.Controls.Add(this.cboAlignOnsets);
 			this.grpOnsets.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.grpOnsets.Location = new System.Drawing.Point(163, 22);
+			this.grpOnsets.Location = new System.Drawing.Point(163, 77);
 			this.grpOnsets.Name = "grpOnsets";
 			this.grpOnsets.Size = new System.Drawing.Size(147, 346);
 			this.grpOnsets.TabIndex = 137;
@@ -1533,6 +1548,7 @@
 			// 
 			// grpBarsBeats
 			// 
+			this.grpBarsBeats.Controls.Add(this.pnlBeatFade);
 			this.grpBarsBeats.Controls.Add(this.chkBarsBeats);
 			this.grpBarsBeats.Controls.Add(this.pnlNotes);
 			this.grpBarsBeats.Controls.Add(this.chkWhiteBarBeats);
@@ -1545,9 +1561,9 @@
 			this.grpBarsBeats.Controls.Add(this.pnlTrackBeatsX);
 			this.grpBarsBeats.Controls.Add(this.panel1);
 			this.grpBarsBeats.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.grpBarsBeats.Location = new System.Drawing.Point(10, 22);
+			this.grpBarsBeats.Location = new System.Drawing.Point(10, 72);
 			this.grpBarsBeats.Name = "grpBarsBeats";
-			this.grpBarsBeats.Size = new System.Drawing.Size(147, 346);
+			this.grpBarsBeats.Size = new System.Drawing.Size(147, 393);
 			this.grpBarsBeats.TabIndex = 136;
 			this.grpBarsBeats.TabStop = false;
 			this.grpBarsBeats.Text = "   Bars && Beats ";
@@ -1598,7 +1614,7 @@
 			// 
 			this.chkBeatsThird.AutoSize = true;
 			this.chkBeatsThird.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.chkBeatsThird.Location = new System.Drawing.Point(24, 66);
+			this.chkBeatsThird.Location = new System.Drawing.Point(20, 66);
 			this.chkBeatsThird.Name = "chkBeatsThird";
 			this.chkBeatsThird.Size = new System.Drawing.Size(80, 17);
 			this.chkBeatsThird.TabIndex = 141;
@@ -1623,7 +1639,7 @@
 			this.chkBars.Checked = true;
 			this.chkBars.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.chkBars.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.chkBars.Location = new System.Drawing.Point(24, 3);
+			this.chkBars.Location = new System.Drawing.Point(20, 3);
 			this.chkBars.Name = "chkBars";
 			this.chkBars.Size = new System.Drawing.Size(112, 17);
 			this.chkBars.TabIndex = 139;
@@ -1648,7 +1664,7 @@
 			this.chkBeatsFull.Checked = true;
 			this.chkBeatsFull.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.chkBeatsFull.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.chkBeatsFull.Location = new System.Drawing.Point(24, 24);
+			this.chkBeatsFull.Location = new System.Drawing.Point(20, 24);
 			this.chkBeatsFull.Name = "chkBeatsFull";
 			this.chkBeatsFull.Size = new System.Drawing.Size(141, 17);
 			this.chkBeatsFull.TabIndex = 143;
@@ -1662,7 +1678,7 @@
 			this.chkBeatsHalf.Checked = true;
 			this.chkBeatsHalf.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.chkBeatsHalf.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.chkBeatsHalf.Location = new System.Drawing.Point(24, 45);
+			this.chkBeatsHalf.Location = new System.Drawing.Point(20, 45);
 			this.chkBeatsHalf.Name = "chkBeatsHalf";
 			this.chkBeatsHalf.Size = new System.Drawing.Size(139, 17);
 			this.chkBeatsHalf.TabIndex = 142;
@@ -1676,7 +1692,7 @@
 			this.chkBeatsQuarter.Checked = true;
 			this.chkBeatsQuarter.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.chkBeatsQuarter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.chkBeatsQuarter.Location = new System.Drawing.Point(24, 87);
+			this.chkBeatsQuarter.Location = new System.Drawing.Point(20, 87);
 			this.chkBeatsQuarter.Name = "chkBeatsQuarter";
 			this.chkBeatsQuarter.Size = new System.Drawing.Size(169, 17);
 			this.chkBeatsQuarter.TabIndex = 140;
@@ -2301,6 +2317,18 @@
 			this.grpSaveLOR.TabStop = false;
 			this.grpSaveLOR.Text = "          Save                                Sequence";
 			// 
+			// chkAutolaunch
+			// 
+			this.chkAutolaunch.AutoSize = true;
+			this.chkAutolaunch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.chkAutolaunch.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.chkAutolaunch.Location = new System.Drawing.Point(22, 88);
+			this.chkAutolaunch.Name = "chkAutolaunch";
+			this.chkAutolaunch.Size = new System.Drawing.Size(165, 17);
+			this.chkAutolaunch.TabIndex = 138;
+			this.chkAutolaunch.Text = "Auto-launch Sequence Editor";
+			this.chkAutolaunch.UseVisualStyleBackColor = true;
+			// 
 			// picLOR
 			// 
 			this.picLOR.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picLOR.BackgroundImage")));
@@ -2398,17 +2426,116 @@
 			this.txtSeqName.Size = new System.Drawing.Size(219, 20);
 			this.txtSeqName.TabIndex = 124;
 			// 
-			// chkAutolaunch
+			// grpPlatform
 			// 
-			this.chkAutolaunch.AutoSize = true;
-			this.chkAutolaunch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.chkAutolaunch.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.chkAutolaunch.Location = new System.Drawing.Point(22, 88);
-			this.chkAutolaunch.Name = "chkAutolaunch";
-			this.chkAutolaunch.Size = new System.Drawing.Size(165, 17);
-			this.chkAutolaunch.TabIndex = 138;
-			this.chkAutolaunch.Text = "Auto-launch Sequence Editor";
-			this.chkAutolaunch.UseVisualStyleBackColor = true;
+			this.grpPlatform.Controls.Add(this.pictureBox3);
+			this.grpPlatform.Controls.Add(this.chkxLights);
+			this.grpPlatform.Controls.Add(this.pictureBox2);
+			this.grpPlatform.Controls.Add(this.chkLOR);
+			this.grpPlatform.Controls.Add(this.label35);
+			this.grpPlatform.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.grpPlatform.Location = new System.Drawing.Point(8, 18);
+			this.grpPlatform.Name = "grpPlatform";
+			this.grpPlatform.Size = new System.Drawing.Size(300, 48);
+			this.grpPlatform.TabIndex = 157;
+			this.grpPlatform.TabStop = false;
+			this.grpPlatform.Text = "       Platform";
+			// 
+			// label35
+			// 
+			this.label35.AutoSize = true;
+			this.label35.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label35.Location = new System.Drawing.Point(132, 55);
+			this.label35.Name = "label35";
+			this.label35.Size = new System.Drawing.Size(38, 13);
+			this.label35.TabIndex = 142;
+			this.label35.Text = "(lable)";
+			this.label35.Visible = false;
+			// 
+			// pictureBox2
+			// 
+			this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
+			this.pictureBox2.Location = new System.Drawing.Point(40, 20);
+			this.pictureBox2.Name = "pictureBox2";
+			this.pictureBox2.Size = new System.Drawing.Size(90, 19);
+			this.pictureBox2.TabIndex = 158;
+			this.pictureBox2.TabStop = false;
+			// 
+			// chkLOR
+			// 
+			this.chkLOR.AutoSize = true;
+			this.chkLOR.Checked = true;
+			this.chkLOR.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.chkLOR.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.chkLOR.Location = new System.Drawing.Point(19, 22);
+			this.chkLOR.Name = "chkLOR";
+			this.chkLOR.Size = new System.Drawing.Size(15, 14);
+			this.chkLOR.TabIndex = 157;
+			this.chkLOR.Tag = "13";
+			this.chkLOR.UseVisualStyleBackColor = true;
+			// 
+			// chkxLights
+			// 
+			this.chkxLights.AutoSize = true;
+			this.chkxLights.Checked = true;
+			this.chkxLights.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.chkxLights.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.chkxLights.Location = new System.Drawing.Point(151, 22);
+			this.chkxLights.Name = "chkxLights";
+			this.chkxLights.Size = new System.Drawing.Size(15, 14);
+			this.chkxLights.TabIndex = 159;
+			this.chkxLights.Tag = "13";
+			this.chkxLights.UseVisualStyleBackColor = true;
+			// 
+			// pictureBox3
+			// 
+			this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
+			this.pictureBox3.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.InitialImage")));
+			this.pictureBox3.Location = new System.Drawing.Point(169, 17);
+			this.pictureBox3.Name = "pictureBox3";
+			this.pictureBox3.Size = new System.Drawing.Size(85, 28);
+			this.pictureBox3.TabIndex = 160;
+			this.pictureBox3.TabStop = false;
+			// 
+			// pnlBeatFade
+			// 
+			this.pnlBeatFade.Controls.Add(this.swRamps);
+			this.pnlBeatFade.Controls.Add(this.label36);
+			this.pnlBeatFade.Controls.Add(this.label37);
+			this.pnlBeatFade.Location = new System.Drawing.Point(6, 347);
+			this.pnlBeatFade.Name = "pnlBeatFade";
+			this.pnlBeatFade.Size = new System.Drawing.Size(139, 17);
+			this.pnlBeatFade.TabIndex = 157;
+			// 
+			// swRamps
+			// 
+			this.swRamps.Location = new System.Drawing.Point(37, 1);
+			this.swRamps.Name = "swRamps";
+			this.swRamps.OffFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.swRamps.OnFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.swRamps.Size = new System.Drawing.Size(32, 16);
+			this.swRamps.Style = JCS.ToggleSwitch.ToggleSwitchStyle.OSX;
+			this.swRamps.TabIndex = 132;
+			// 
+			// label36
+			// 
+			this.label36.AutoSize = true;
+			this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label36.Location = new System.Drawing.Point(69, 2);
+			this.label36.Name = "label36";
+			this.label36.Size = new System.Drawing.Size(62, 13);
+			this.label36.TabIndex = 128;
+			this.label36.Text = "Ramp-Fade";
+			// 
+			// label37
+			// 
+			this.label37.AutoSize = true;
+			this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label37.Location = new System.Drawing.Point(0, 2);
+			this.label37.Name = "label37";
+			this.label37.Size = new System.Drawing.Size(38, 13);
+			this.label37.TabIndex = 127;
+			this.label37.Text = "On-Off";
 			// 
 			// frmTune
 			// 
@@ -2489,6 +2616,12 @@
 			((System.ComponentModel.ISupportInitialize)(this.picLOR)).EndInit();
 			this.panel3.ResumeLayout(false);
 			this.panel3.PerformLayout();
+			this.grpPlatform.ResumeLayout(false);
+			this.grpPlatform.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+			this.pnlBeatFade.ResumeLayout(false);
+			this.pnlBeatFade.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -2674,6 +2807,16 @@
 		private System.Windows.Forms.CheckBox checkBox4;
 		private System.Windows.Forms.PictureBox picLOR;
 		private System.Windows.Forms.CheckBox chkAutolaunch;
+		private System.Windows.Forms.GroupBox grpPlatform;
+		private System.Windows.Forms.PictureBox pictureBox3;
+		private System.Windows.Forms.CheckBox chkxLights;
+		private System.Windows.Forms.PictureBox pictureBox2;
+		private System.Windows.Forms.CheckBox chkLOR;
+		private System.Windows.Forms.Label label35;
+		private System.Windows.Forms.Panel pnlBeatFade;
+		private JCS.ToggleSwitch swRamps;
+		private System.Windows.Forms.Label label36;
+		private System.Windows.Forms.Label label37;
 	}
 }
 

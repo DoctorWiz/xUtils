@@ -33,13 +33,9 @@ namespace Vamperizer
 		private static string VALUE_start = "=\"";
 		private static string VALUE_end = "\"";
 
-		public xEffect(string theLabel, int Starttime, int Endtime)
+		public xEffect(string theLabel, int startTime, int endTime)
 		{
-			//int roundStart = RoundTime(Starttime);
-			//int roundEnd = RoundTime(Endtime);
-			int roundStart = Starttime;
-			int roundEnd = Endtime;
-			if (roundStart > roundEnd)
+			if (startTime >= endTime)
 			{
 				// Raise Exception
 				System.Diagnostics.Debugger.Break();
@@ -47,65 +43,55 @@ namespace Vamperizer
 			else
 			{
 				xlabel = theLabel;
-				_starttime = roundStart;
-				_endtime = roundEnd;
-				lastEnd = roundEnd;
+				_starttime = startTime;
+				_endtime = endTime;
+				lastEnd = endTime;
 			}
 		}
 
-		public xEffect(int Starttime, int Endtime)
+		public xEffect(int startTime, int endTime)
 		{
-			//int roundStart = RoundTime(Starttime);
-			//int roundEnd = RoundTime(Endtime);
-			int roundStart = Starttime;
-			int roundEnd = Endtime;
-			if (roundStart > roundEnd)
+			if (startTime >= endTime)
 			{
-				System.Diagnostics.Debugger.Break();
 				// Raise Exception
+				System.Diagnostics.Debugger.Break();
 			}
 			else
 			{
-				_starttime = roundStart;
-				_endtime = roundEnd;
-				lastEnd = roundEnd;
+				_starttime = startTime;
+				_endtime = endTime;
+				lastEnd = endTime;
 			}
 		}
 
-		public xEffect(int Endtime)
+		public xEffect(int endTime)
 		{
-			//int roundEnd = RoundTime(Endtime);
-			//int roundStart = RoundTime(Starttime);
-			int roundEnd = Endtime;
-			if (lastEnd > roundEnd)
+			if (lastEnd >= endTime)
 			{
-				System.Diagnostics.Debugger.Break();
 				// Raise Exception
+				System.Diagnostics.Debugger.Break();
 			}
 			else
 			{
 				_starttime = lastEnd;
-				_endtime = roundEnd;
-				lastEnd = roundEnd;
+				_endtime = endTime;
+				lastEnd = endTime;
 			}
 		}
 
-		public xEffect(string theLabel, int Endtime)
+		public xEffect(string theLabel, int endTime)
 		{
-			//int roundStart = RoundTime(Starttime);
-			//int roundEnd = RoundTime(Endtime);
-			int roundEnd = Endtime;
-			if (lastEnd > roundEnd)
+			if (lastEnd >= endTime)
 			{
-				//System.Diagnostics.Debugger.Break();
 				// Raise Exception
+				System.Diagnostics.Debugger.Break();
 			}
 			else
 			{
 				xlabel = theLabel;
 				_starttime = lastEnd;
-				_endtime = roundEnd;
-				lastEnd = roundEnd;
+				_endtime = endTime;
+				lastEnd = endTime;
 			}
 		}
 
@@ -117,10 +103,7 @@ namespace Vamperizer
 			}
 			set
 			{
-				//int roundStart = RoundTime(Starttime);
-				//int roundEnd = RoundTime(Endtime);
-				int roundStart = value;
-				if (roundStart > _endtime)
+				if (value >= _endtime)
 				{
 					System.Diagnostics.Debugger.Break();
 					// Raise Exception
@@ -136,14 +119,11 @@ namespace Vamperizer
 		{
 			get
 			{
-				return _starttime;
+				return _endtime;
 			}
 			set
 			{
-				//int roundStart = RoundTime(Starttime);
-				//int roundEnd = RoundTime(Endtime);
-				int roundEnd = value;
-				if (_starttime > roundEnd)
+				if (_starttime >= value)
 				{
 					System.Diagnostics.Debugger.Break();
 					// Raise Exception
@@ -154,18 +134,6 @@ namespace Vamperizer
 				}
 			}
 		}
-
-
-		public static int RoundTime(int theTime)
-		{
-			//double t1 = (double)theTime / 25D;
-			//double t2 = Math.Round(t1);
-			//int t3 = (int)t2 * 25;
-			//return t3;
-			//! DO NOT ROUND
-			return theTime;
-		}
-
 
 		public string LineOutX()
 		{
@@ -318,30 +286,30 @@ namespace Vamperizer
 			}
 		}
 
-		public xEffect Add(string theLabel, int Starttime, int Endtime)
+		public xEffect Add(string theLabel, int startTime, int endTime)
 		{
-			xEffect newEff = new xEffect(theLabel, Starttime, Endtime);
+			xEffect newEff = new xEffect(theLabel, startTime, endTime);
 			Add(newEff);
 			return newEff;
 		}
 
-		public xEffect Add(int Starttime, int Endtime)
+		public xEffect Add(int startTime, int endTime)
 		{
-			xEffect newEff = new xEffect(Starttime, Endtime);
+			xEffect newEff = new xEffect(startTime, endTime);
 			Add(newEff);
 			return newEff;
 		}
 
-		public xEffect Add(int Endtime)
+		public xEffect Add(int endTime)
 		{
-			xEffect newEff = new xEffect(Endtime);
+			xEffect newEff = new xEffect(endTime);
 			Add(newEff);
 			return newEff;
 		}
 
-		public xEffect Add(string theLabel, int Endtime)
+		public xEffect Add(string theLabel, int endTime)
 		{
-			xEffect newEff = new xEffect(theLabel, Endtime);
+			xEffect newEff = new xEffect(theLabel, endTime);
 			Add(newEff);
 			return newEff;
 		}

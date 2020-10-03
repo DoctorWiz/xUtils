@@ -115,7 +115,7 @@ namespace Vamperizer
 					//fileChanCfg = "";
 					// Add to Sequences MRU
 
-					centiseconds = ParseCentiseconds(audioData.Duration);
+					centiseconds = ms2cs(audioData.Duration);
 
 					ImportVampsToSequence();
 					SaveSequence(fileCurrent);
@@ -153,17 +153,9 @@ namespace Vamperizer
 			return seq;
 		}
 
-		private int ParseCentiseconds(TimeSpan duration)
-		{
-			double rcs = Math.Round(duration.TotalMilliseconds);
-			rcs = Math.Round(rcs / 10);
-			int ics = (int)rcs;
-			return ics;
-		}
-
 		private void SaveSongInfo()
 		{
-			centiseconds = ParseCentiseconds(audioData.Duration);
+			centiseconds = ms2cs(audioData.Duration);
 			seq.Centiseconds = centiseconds;
 			seq.SequenceType = SequenceType.Musical;
 			//seq.Tracks[0].Centiseconds = 0;
@@ -202,24 +194,26 @@ namespace Vamperizer
 			int errs = 0;
 
 			SaveSongInfo();
+			
 			TimingGrid ftg = GetGrid("20 FPS", true);
 			ftg.TimingGridType = TimingGridType.FixedGrid;
 			ftg.Centiseconds = centiseconds;
 			ftg.spacing = 5;
+			
 			vampTrack = GetTrack("Tune-O-Rama", true);
 			vampTrack.Centiseconds = centiseconds;
 			vampTrack.timingGrid = ftg;
 
 			string lorAuth = utils.DefaultAuthor;
-			seq.info.modifiedBy = lorAuth + " / Vamperizer";
+			seq.info.modifiedBy = lorAuth + " + Vamperizer";
 
 			if (doBarsBeats && (errLevel == 0))
 			{
-				//errLevel = ImportBarBeats();
+				errLevel = ImportBarsBeats();
 			}
 			if (doNoteOnsets && (errLevel == 0))
 			{
-				//errLevel = ImportNoteOnsets();
+				errLevel = ImportNoteOnsets();
 			}
 			if (doTranscribe && (errLevel == 0))
 			{
@@ -250,15 +244,18 @@ namespace Vamperizer
 		private int ImportBarsBeats()
 		{
 			int errs = 0;
-			ChannelGroup beatGroup = GetGroup("Bars & Beats", vampTrack);
+			ChannelGroup beatGroup = GetGroup("Bars and Beats", vampTrack);
 			if (xBars != null)
 			{
 				if (xBars.effects.Count > 0)
 				{
-					TimingGrid barGrid = GetGrid("Bars");
-					Channel barCh = GetChannel("Bars", beatGroup.Members);
+					TimingGrid barGrid = GetGrid("Bars",true);
 					ImportTimingGrid(barGrid, xBars);
-					ImportBeatChannel(barCh, xBars);
+					if (swRamps.Checked)
+					{
+						Channel barCh = GetChannel("Bars", beatGroup.Members);
+						ImportBeatChannel(barCh, xBars, 1);
+					}
 				}
 			}
 			if (chkBeatsFull.Checked)
@@ -267,10 +264,10 @@ namespace Vamperizer
 				{
 					if (xBeatsFull.effects.Count > 0)
 					{
-						TimingGrid barGrid = GetGrid("Beats-Full");
+						TimingGrid barGrid = GetGrid("Beats-Full",true);
 						Channel beatCh = GetChannel("Beats-Full", beatGroup.Members);
 						ImportTimingGrid(barGrid, xBeatsFull);
-						ImportBeatChannel(beatCh, xBeatsFull);
+						ImportBeatChannel(beatCh, xBeatsFull,beatsPerBar);
 					}
 				}
 			}
@@ -280,10 +277,10 @@ namespace Vamperizer
 				{
 					if (xBeatsHalf.effects.Count > 0)
 					{
-						TimingGrid barGrid = GetGrid("Beats-Half");
+						TimingGrid barGrid = GetGrid("Beats-Half",true);
 						Channel beatCh = GetChannel("Beats-Half", beatGroup.Members);
 						ImportTimingGrid(barGrid, xBeatsHalf);
-						ImportBeatChannel(beatCh, xBeatsHalf);
+						ImportBeatChannel(beatCh, xBeatsHalf,beatsPerBar * 2);
 					}
 				}
 			}
@@ -293,10 +290,10 @@ namespace Vamperizer
 				{
 					if (xBeatsThird.effects.Count > 0)
 					{
-						TimingGrid barGrid = GetGrid("Beats-Third");
+						TimingGrid barGrid = GetGrid("Beats-Third",true);
 						Channel beatCh = GetChannel("Beats-Third", beatGroup.Members);
 						ImportTimingGrid(barGrid, xBeatsThird);
-						ImportBeatChannel(beatCh, xBeatsThird);
+						ImportBeatChannel(beatCh, xBeatsThird,beatsPerBar * 3);
 					}
 				}
 			}
@@ -306,10 +303,10 @@ namespace Vamperizer
 				{
 					if (xBeatsQuarter.effects.Count > 0)
 					{
-						TimingGrid barGrid = GetGrid("Beats-Quarter");
+						TimingGrid barGrid = GetGrid("Beats-Quarter",true);
 						Channel beatCh = GetChannel("Beats-Quarter", beatGroup.Members);
 						ImportTimingGrid(barGrid, xBeatsQuarter);
-						ImportBeatChannel(beatCh, xBeatsQuarter);
+						ImportBeatChannel(beatCh, xBeatsQuarter,beatsPerBar * 4);
 					}
 				}
 			}
@@ -319,7 +316,7 @@ namespace Vamperizer
 				{
 					if (xOnsets.effects.Count > 0)
 					{
-						TimingGrid noteGrid = GetGrid("Note Onsets");
+						TimingGrid noteGrid = GetGrid("Note Onsets",true);
 						//Channel noteCh = GetChannel("Note Onsets", beatGroup.Members);
 						ImportTimingGrid(noteGrid, xBeatsQuarter);
 						//ImportBeatChannel(noteCh, xBeatsQuarter);
@@ -369,26 +366,50 @@ namespace Vamperizer
 			return errs;
 		}
 
-		private int ImportTimingGrid(TimingGrid beatGrid, xTimings xEffects)
+		private int ImportNoteOnsets()
 		{
 			int errs = 0;
+			if (xOnsets != null)
+			{
+				if (xOnsets.effects.Count > 0)
+				{
+					TimingGrid onsGrid = GetGrid("Note Onsets");
+					ImportTimingGrid(onsGrid, xBars);
+					ChannelGroup onsGrp = GetGroup("Note Onsets", vampTrack);
+					ImportNoteOnsetChannels(onsGrp, xBeatsFull);
+				}
+			}
+			return errs;
+		}
+
+			private int ImportTimingGrid(TimingGrid beatGrid, xTimings xEffects)
+		{
+			int errs = 0;
+			int lastStart = -1;
 
 			// If grid already has timings (from a previous run) clear them, start over fresh
 			if (beatGrid.timings.Count > 0)
 			{
 				beatGrid.timings.Clear();
 			}
+			beatGrid.TimingGridType = TimingGridType.Freeform;
 			for (int q = 0; q < xEffects.effects.Count; q++)
 			{
 				xEffect xef = xEffects.effects[q];
-				double xt = xef.starttime / 10;
-				int t = (int)Math.Round(xt);
-				beatGrid.AddTiming(t);
+				int t = ms2cs(xef.starttime);
+				if (t > lastStart)
+				{
+					if (t < centiseconds)
+					{
+						beatGrid.AddTiming(t);
+					}
+				}
+				lastStart = t;
 			}
 			return errs;
 		}
 
-		private int ImportBeatChannel(Channel beatCh, xTimings xEffects)
+		private int ImportBeatChannel(Channel beatCh, xTimings xEffects, int barDivs)
 		{
 			int errs = 0;
 
@@ -397,26 +418,79 @@ namespace Vamperizer
 			{
 				beatCh.effects.Clear();
 			}
+			//int lb = barDivs - 1;
 			for (int q = 0; q < xEffects.effects.Count; q++)
 			{
-				xEffect xef = xBars.effects[q];
-				Effect lef = new Effect();
-				lef.EffectType = EffectType.Intensity;
-				lef.startIntensity = 100;
-				lef.endIntensity = 100;
-				double xt = xef.starttime / 10;
-				int t = (int)Math.Round(xt);
-				lef.startCentisecond = t;
-				xt = xef.starttime + ((xef.endtime - xef.starttime)) / 2;
-				xt /= 10;
-				t = (int)Math.Round(xt);
-				lef.endCentisecond = t;
-				beatCh.AddEffect(lef);
-			}
+				if (swRamps.Checked)
+				{
+					xEffect xef = xEffects.effects[q];
+					Effect lef = new Effect();
+					lef.EffectType = EffectType.Intensity;
+					lef.startIntensity = 100;
+					lef.endIntensity = 0;
+					lef.startCentisecond = ms2cs(xef.starttime);
+					// This should work, why doesn't it?
+					lef.endCentisecond = ms2cs(xef.endtime);
+					if (q < (xEffects.effects.Count - 1))
+					{
+						// Alternative
+						lef.endCentisecond = ms2cs(xEffects.effects[q].starttime);
+					}
+					beatCh.AddEffect(lef);
+				}
+				else // On-Off
+				{
+					if (((q+1) % barDivs) == firstBeat)
+					{
+						xEffect xef = xEffects.effects[q];
+						Effect lef = new Effect();
+						lef.EffectType = EffectType.Intensity;
+						lef.Intensity = 100;
+						lef.startCentisecond = ms2cs(xef.starttime);
+						// This should work, why doesn't it?
+						lef.endCentisecond = ms2cs(xef.endtime);
+						//if (q < (xEffects.effects.Count - 1))
+						//{
+							// Alternative
+						//	lef.endCentisecond = ms2cs(xEffects.effects[q].starttime);
+						//}
+						beatCh.AddEffect(lef);
+					}
+				}
+			} // end for loop
+			return errs;
+		}
+
+		private int ms2cs(int ms)
+		{
+			double c = (ms / 10);
+			int cs = (int)Math.Round(c);
+			return cs;
+		}
+
+		private int ms2cs(double ms)
+		{
+			double c = (ms / 10);
+			int cs = (int)Math.Round(c);
+			return cs;
+		}
+
+		private int ms2cs(TimeSpan ms)
+		{
+			double c = (ms.TotalMilliseconds / 10);
+			int cs = (int)Math.Round(c);
+			return cs;
+		}
+
+private int		ImportNoteOnsetChannels(ChannelGroup onsGrp, xTimings xBeatsFull)
+		{
+			int errs = 0;
 
 
 			return errs;
 		}
+
+
 
 		private int ImportPolyChannels(ChannelGroup polyGroup, xTimings xEffects)
 		{
